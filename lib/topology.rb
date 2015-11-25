@@ -37,6 +37,10 @@ class Topology
     @ports.keys
   end
 
+  def hosts
+    @hosts
+  end
+
   def add_switch(dpid, ports)
     ports.each { |each| add_port(each) }
     maybe_send_handler :add_switch, dpid, self
