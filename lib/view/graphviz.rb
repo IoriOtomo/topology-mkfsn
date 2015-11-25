@@ -17,6 +17,7 @@ module View
         topology.hosts.each do |host|
           mac_address, _ip_address, dpid, port_no = *host
           gviz.add_nodes(_ip_address.to_s, shape: 'ellipse')
+          next unless nodes[dpid]
           gviz.add_edges _ip_address.to_s, nodes[dpid]
         end
 
