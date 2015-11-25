@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'ruby-graphviz'
-gem 'trema'
+gem 'trema', '0.8.0'
 
 group :development, :test do
   gem 'aruba', require: false
