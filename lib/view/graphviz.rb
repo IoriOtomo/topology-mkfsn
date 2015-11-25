@@ -13,6 +13,13 @@ module View
         nodes = topology.switches.each_with_object({}) do |each, tmp|
           tmp[each] = gviz.add_nodes(each.to_hex, shape: 'box')
         end
+
+        topology.hosts.each do |host|
+          mac_address, _ip_address, dpid, port_no = *host
+          gviz.add_nodes(mac_address.to_s, shape: 'ellipse')
+          gviz.add_edges mac_address.to_s, nodes[dpid]
+        end
+
         topology.links.each do |each|
           next unless nodes[each.dpid_a] && nodes[each.dpid_b]
           gviz.add_edges nodes[each.dpid_a], nodes[each.dpid_b]
